@@ -62,7 +62,7 @@ modfit<-train(classe~.,data=training,method="rf",ntree=50,proxy=TRUE,importance=
 modfit
 modfit$finalModel
 ```
-The resulting model _modfit_ when computed using 5 fold cross-validation (repeated 3 times) was able to predict observations within the training set with an accuracy of greater than 99%. This was based on a model with 50 trees. The final mtry value used for the model was 27, which was the number of variables randomly sampled as candidates at each split. We can now apply this model to predict the class of observations in the testing set, and compute an out of sample error.
+The resulting model _modfit_ when computed using 5 fold cross-validation (repeated 3 times) was able to predict observations within the training set with an accuracy of greater than 99%. The out-of-bag (OOB) estimate of error rate for this model was 0.91%. Out-of-bag estimate for the generalization error is the error rate of the out-of-bag classifier on the training set. The overall model was based on a model with 50 trees. The final mtry value used for the model was 27, which was the number of variables randomly sampled as candidates at each split. We can now apply this model to predict the class of observations in the testing set, and compute an out of sample error.
 ```{r out of sample accuracy}
 predictions<-predict(modfit,newdata=testing)
 confusionMatrix(predictions,testing$classe)
